@@ -1,12 +1,12 @@
 package com.reactnativebelleutility;
 
 import androidx.annotation.NonNull;
-
-import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.module.annotations.ReactModule;
+import com.reactnativebelleutility.reminder.LocalNotificationHelper;
+import java.util.Date;
 
 @ReactModule(name = BelleUtilityModule.NAME)
 public class BelleUtilityModule extends ReactContextBaseJavaModule {
@@ -23,11 +23,13 @@ public class BelleUtilityModule extends ReactContextBaseJavaModule {
     }
 
 
-    // Example method
-    // See https://reactnative.dev/docs/native-modules-android
     @ReactMethod
-    public void multiply(double a, double b, Promise promise) {
-        promise.resolve(a * b);
+    public void scheduleReminders(String groupId, String title, String content, double firedDateInMs, String repeatType, int repeatStep, String extraData) {
+      LocalNotificationHelper.scheduleReminder(getReactApplicationContext(), groupId, title, content, new Date((long) firedDateInMs), repeatType, repeatStep, extraData);
     }
 
+    @ReactMethod
+    public void cancelReminders(String groupId) {
+      LocalNotificationHelper.cancelReminders(getReactApplicationContext(), groupId);
+    }
 }

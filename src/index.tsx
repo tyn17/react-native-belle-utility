@@ -1,4 +1,5 @@
 import { NativeModules, Platform } from 'react-native';
+export * from './dynamic_links/dynamic_links_listener';
 
 const LINKING_ERROR =
   `The package 'react-native-belle-utility' doesn't seem to be linked. Make sure: \n\n` +
@@ -7,14 +8,32 @@ const LINKING_ERROR =
   '- You are not using Expo managed workflow\n';
 
 const BelleUtility = NativeModules.BelleUtility  ? NativeModules.BelleUtility  : new Proxy(
-      {},
-      {
-        get() {
-          throw new Error(LINKING_ERROR);
-        },
-      }
-    );
+  {},
+  {
+    get() {
+      throw new Error(LINKING_ERROR);
+    },
+  }
+);
 
-export function multiply(a: number, b: number): Promise<number> {
-  return BelleUtility.multiply(a, b);
+//-----------------------------
+interface ReminderModel {
+  groupId: string;
+  title: string;
+  content: string;
+  firedDate: Date;
+  repeatType: 'daily' | 'hourly' | 'minutely';
+  repeatStep?: number;
+  data?: any;
 }
+
+export const Reminder = {
+  scheduleReminders: (model: ReminderModel) => {
+    const data = model.data ? JSON.stringify(model.data) : '';
+    return BelleUtility.scheduleReminders(model.groupId, model.title, model.content, model.firedDate.getTime(), model.repeatType, model.repeatStep || 1, data);
+  },
+  cancelReminders: (groupId?: string) => {
+    return BelleUtility.cancelReminders(groupId);
+  }
+};
+

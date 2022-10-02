@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "768499176877",
+    "project_id": "belle-skin",
+    "storage_bucket": "belle-skin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:768499176877:android:21c3b9fd2d019e7473bd24",
+        "android_client_info": {
+          "package_name": "com.belletorus.belleskin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "768499176877-dss4n8v941lpgs8lqin9r9vokr78gifn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCL-nrNeX44HORbc-WPm5iGTh0p0RU_RtE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "768499176877-dss4n8v941lpgs8lqin9r9vokr78gifn.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "768499176877-s616h6p6nlhuaj8iqvbc437l2q2377bu.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.belletorus.belleskin"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
