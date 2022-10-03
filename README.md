@@ -4,6 +4,12 @@ Utility for Belle applications
 
 ```sh
 npm install react-native-belle-utility
+```  
+```js
+"dependencies": {
+  ...other dependencies
+  "react-native-belle-utility": "git+https://github.com/tyn17/react-native-belle-utility.git"
+}
 ```
 Install dependencies  
 ```sh
@@ -15,7 +21,7 @@ yarn add @react-native-firebase/dynamic-links
 ```
 
 ## Configuration
-**Android**
+**Android**  
 Download the `google-services.json` file and place it inside of your project at the following location: `/android/app/google-services.json`  
 
 ```js
@@ -34,7 +40,14 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services' // <- Add this line
 ```
 
-**iOS**
+AndroidManifest.xml
+```xml
+<application>
+    ...
+    <receiver android:name="com.reactnativebelleutility.reminder.ReminderBroadcastReceiver" />
+</application>
+```  
+**iOS**  
 Download the `GoogleService-Info.plist` and add to the project. Following this [link](https://rnfirebase.io/#generating-ios-credentials)
 
 ## Usage
