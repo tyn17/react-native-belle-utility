@@ -1,5 +1,7 @@
 import { NativeModules, Platform } from 'react-native';
-export * from './dynamic_links/dynamic_links_listener';
+import { DynamicLinkListener, dynamicLinkSubject } from './dynamic_links/dynamic_links_listener';
+import { registerRemoteNotifications, subscribeTopics, unSubscribeTopics } from './notifications/notification_helper';
+import { NotificationListener, notificationSubject } from './notifications/notification_listener';
 
 const LINKING_ERROR =
   `The package 'react-native-belle-utility' doesn't seem to be linked. Make sure: \n\n` +
@@ -37,3 +39,15 @@ export const Reminder = {
   }
 };
 
+export const DynamicLink = {
+  observer: dynamicLinkSubject,
+  Listener: DynamicLinkListener
+};
+
+export const Notification = {
+  observer: notificationSubject,
+  register: registerRemoteNotifications,
+  subscribeTopics: subscribeTopics,
+  unSubscribeTopics: unSubscribeTopics,
+  Listener: NotificationListener
+};

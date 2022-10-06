@@ -1,19 +1,27 @@
 import * as React from 'react';
-
-import { StyleSheet, View, Button, ToastAndroid } from 'react-native';
-import { Reminder, DynamicLinkListener, dynamicLinkSubject } from 'react-native-belle-utility';
+import { StyleSheet, View, Button, ToastAndroid, Platform, Alert } from 'react-native';
+import { Reminder, DynamicLink, Notification } from 'react-native-belle-utility';
+const Buffer = require("buffer").Buffer;
 
 export default function App() {
-  //TEST DYNAMIC LINKS
+  const showDebugMessage = (msg: string) => {
+    console.log(msg);
+    if (Platform.OS === 'android') {
+      ToastAndroid.show(msg, ToastAndroid.LONG);
+    } else {
+      Alert.alert('Debug', msg);
+    }
+  };
+  // TEST DYNAMIC LINKS
   React.useEffect(() => {
-    const sub = dynamicLinkSubject.subscribe((data) => {
-      ToastAndroid.show("Dynamic Link for page: " + data.page + ". Data: " + JSON.stringify(data.params), ToastAndroid.LONG);
+    const sub = DynamicLink.observer.subscribe((data) => {
+      showDebugMessage(`Dynamic Link for page: ${data.page}. Data: ${JSON.stringify(data.params)}`);
     });
     return () => {
       sub.cancel();
     }
   });
-  //TEST REMINDER
+  // TEST REMINDER
   const group1Id = 'Group 1';
   const group2Id = 'Group 2';
 
@@ -29,6 +37,25 @@ export default function App() {
 
   const onCancelReminders = (groupId?: string) => Reminder.cancelReminders(groupId);
 
+  // TEST REMOTE NOTIFICATION
+  React.useEffect(() => {
+    Notification.register().then((result) => {
+      showDebugMessage(`Notification Register ${result.success ? 'success' : 'failed'}`);
+      if (result.success) {
+        //const deviceToken = result.deviceToken;
+        //Save DeviceToken to Server
+        Notification.subscribeTopics([Buffer.from('ty.nguyen@sea-solutions.com').toString('base64'), 'second-topic']);
+      }
+    });
+
+    const sub = Notification.observer.subscribe((notify) => {
+      showDebugMessage(`Notification: ${JSON.stringify(notify)}`);
+    });
+    return () => {
+      sub.cancel();
+    };
+  });
+
   return (
     <View style={styles.container}>
       <View style={styles.button}>
@@ -43,7 +70,8 @@ export default function App() {
       <View style={styles.button}>
         <Button title='Cancel All Reminders' onPress={() => onCancelReminders()}></Button>
       </View>
-      <DynamicLinkListener />
+      <DynamicLink.Listener />
+      <Notification.Listener />
     </View>
   );
 }

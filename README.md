@@ -18,6 +18,9 @@ yarn add @react-native-firebase/app
 
 # Install the dynamic-links module
 yarn add @react-native-firebase/dynamic-links
+
+# Install the messaging module
+yarn add @react-native-firebase/messaging
 ```
 
 ## Configuration

@@ -1,40 +1,41 @@
 {
   "project_info": {
-    "project_number": "768499176877",
-    "project_id": "belle-skin",
-    "storage_bucket": "belle-skin.appspot.com"
+    "project_number": "234687960025",
+    "firebase_url": "https://miniappmarket-default-rtdb.firebaseio.com",
+    "project_id": "miniappmarket",
+    "storage_bucket": "miniappmarket.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:768499176877:android:21c3b9fd2d019e7473bd24",
+        "mobilesdk_app_id": "1:234687960025:android:f95b2918e28212fcddffc8",
         "android_client_info": {
-          "package_name": "com.belletorus.belleskin"
+          "package_name": "tk.atggroup.MiniAppMarket"
         }
       },
       "oauth_client": [
         {
-          "client_id": "768499176877-dss4n8v941lpgs8lqin9r9vokr78gifn.apps.googleusercontent.com",
+          "client_id": "234687960025-7etlhle0nfartcstd7285c482dmd42pd.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCL-nrNeX44HORbc-WPm5iGTh0p0RU_RtE"
+          "current_key": "AIzaSyCSNNkWy2SyhvThJu_ke6pHDdP7VeA7mXo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "768499176877-dss4n8v941lpgs8lqin9r9vokr78gifn.apps.googleusercontent.com",
+              "client_id": "234687960025-7etlhle0nfartcstd7285c482dmd42pd.apps.googleusercontent.com",
               "client_type": 3
             },
             {
-              "client_id": "768499176877-s616h6p6nlhuaj8iqvbc437l2q2377bu.apps.googleusercontent.com",
+              "client_id": "234687960025-2jfcu8eerr1tflf25g2o67noj91igmcj.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.belletorus.belleskin"
+                "bundle_id": "tk.atggroup.MiniAppMarket"
               }
             }
           ]
