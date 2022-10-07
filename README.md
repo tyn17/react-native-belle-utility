@@ -53,7 +53,7 @@ AndroidManifest.xml
 **iOS**  
 Download the `GoogleService-Info.plist` and add to the project. Following this [link](https://rnfirebase.io/#generating-ios-credentials)  
   
-If you see this error "No Firebase App 'DEFAULT' has been created - call firebase.initializeApp()  
+If you see this error "No Firebase App 'DEFAULT' has been created - call firebase.initializeApp()"  
 Add this to your `AppDelegate.m`, in `application:didFinishLaunchingWithOptions:`, and before `return YES;`  
 ```js
 #import <Firebase/Firebase.h>
@@ -66,12 +66,14 @@ if ([FIRApp defaultApp] == nil) {
 ## Usage
 
 ```js
-import { Reminder, DynamicLinkListener, dynamicLinkSubject } from 'react-native-belle-utility';
+import { Reminder, DynamicLink, Notification } from 'react-native-belle-utility';
+import dynamicLinks from '@react-native-firebase/dynamic-links';
+import messaging from '@react-native-firebase/messaging';
 
 export default function App() {
     //HANDLE DYNAMIC LINKS
     React.useEffect(() => {
-        const sub = dynamicLinkSubject.subscribe((data) => {
+        const sub = DynamicLink.observer.subscribe((data) => {
             //Handle the dynamic link here
         });
         return () => {
@@ -79,6 +81,13 @@ export default function App() {
         }
     });
 
+    //NOTIFICATION
+    React.useEffect(() => {
+      Notification.register(messaging).then((result) => {
+        console.log(result.success ? `DeviceToken: ${result.deviceToken}` : `Error: ${result.error}`);
+      });
+    });
+    
     //ADD REMINDERS
     const onScheduleReminders = () => {
         Reminder.scheduleReminders({
@@ -97,7 +106,8 @@ export default function App() {
     return (
         <View style={styles.container}>
             //....
-            <DynamicLinkListener />
+            <DynamicLink.Listener dynamicLinks={dynamicLinks} />
+            <Notification.Listener messaging={messaging} />
         </View>
     );
 }
