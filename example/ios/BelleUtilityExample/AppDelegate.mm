@@ -5,6 +5,7 @@
 #import <React/RCTRootView.h>
 
 #import <React/RCTAppSetupUtils.h>
+#import <Firebase/Firebase.h>
 
 #if RCT_NEW_ARCH_ENABLED
 #import <React/CoreModulesPlugins.h>
@@ -40,7 +41,9 @@
   _bridgeAdapter = [[RCTSurfacePresenterBridgeAdapter alloc] initWithBridge:bridge contextContainer:_contextContainer];
   bridge.surfacePresenter = _bridgeAdapter.surfacePresenter;
 #endif
-
+  if ([FIRApp defaultApp] == nil) {
+    [FIRApp configure];
+  }
   UIView *rootView = RCTAppSetupDefaultRootView(bridge, @"main", nil);
 
   if (@available(iOS 13.0, *)) {

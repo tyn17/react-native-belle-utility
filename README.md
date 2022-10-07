@@ -51,7 +51,17 @@ AndroidManifest.xml
 </application>
 ```  
 **iOS**  
-Download the `GoogleService-Info.plist` and add to the project. Following this [link](https://rnfirebase.io/#generating-ios-credentials)
+Download the `GoogleService-Info.plist` and add to the project. Following this [link](https://rnfirebase.io/#generating-ios-credentials)  
+  
+If you see this error "No Firebase App 'DEFAULT' has been created - call firebase.initializeApp()  
+Add this to your `AppDelegate.m`, in `application:didFinishLaunchingWithOptions:`, and before `return YES;`  
+```js
+#import <Firebase/Firebase.h>
+...
+if ([FIRApp defaultApp] == nil) {
+    [FIRApp configure];
+}
+```
 
 ## Usage
 
