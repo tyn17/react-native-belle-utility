@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>234687960025-2jfcu8eerr1tflf25g2o67noj91igmcj.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.234687960025-2jfcu8eerr1tflf25g2o67noj91igmcj</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCZboWWRlm3u7_fQrnHtW0zLidzK7_HfvA</string>
+	<key>GCM_SENDER_ID</key>
+	<string>234687960025</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>tk.atggroup.MiniAppMarket</string>
+	<key>PROJECT_ID</key>
+	<string>miniappmarket</string>
+	<key>STORAGE_BUCKET</key>
+	<string>miniappmarket.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:234687960025:ios:42a3e72443cc0ca6ddffc8</string>
+	<key>DATABASE_URL</key>
+	<string>https://miniappmarket-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

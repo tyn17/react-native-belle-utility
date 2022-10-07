@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { View } from "react-native";
 import instanceRxSubject from "../rxs/rx_subject";
-import messaging from '@react-native-firebase/messaging';
 
 export interface NotificationInfo {
     messageId?: string;
@@ -9,18 +8,20 @@ export interface NotificationInfo {
     body?: string;
     data?: { [key: string]: string };
 }
-
+export interface NotificationListenerProps {
+  messaging: () => any;
+};
 export const notificationSubject = instanceRxSubject<NotificationInfo>();
-export const NotificationListener: React.FunctionComponent = () => {
+export const NotificationListener: React.FunctionComponent<NotificationListenerProps> = (props) => {
     useEffect(() => {
         //Background
-        messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+        props.messaging().setBackgroundMessageHandler(async (remoteMessage: any) => {
             //TODO: Do something
             console.log(remoteMessage);
         });
 
         //Foreground
-        const unsubscribe = messaging().onMessage(async (remoteMessage) => {
+        const unsubscribe = props.messaging().onMessage(async (remoteMessage: any) => {
           notificationSubject.sink({
             messageId: remoteMessage.messageId,
             title: remoteMessage.notification?.title,

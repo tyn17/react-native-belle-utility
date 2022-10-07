@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { StyleSheet, View, Button, ToastAndroid, Platform, Alert } from 'react-native';
 import { Reminder, DynamicLink, Notification } from 'react-native-belle-utility';
+import dynamicLinks from '@react-native-firebase/dynamic-links';
+import messaging from '@react-native-firebase/messaging';
+
 const Buffer = require("buffer").Buffer;
 
 export default function App() {
@@ -39,12 +42,13 @@ export default function App() {
 
   // TEST REMOTE NOTIFICATION
   React.useEffect(() => {
-    Notification.register().then((result) => {
+    Notification.register(messaging).then((result) => {
       showDebugMessage(`Notification Register ${result.success ? 'success' : 'failed'}`);
       if (result.success) {
         //const deviceToken = result.deviceToken;
         //Save DeviceToken to Server
-        Notification.subscribeTopics([Buffer.from('ty.nguyen@sea-solutions.com').toString('base64'), 'second-topic']);
+        Notification.subscribeTopics(messaging, [Buffer.from('ty.nguyen@sea-solutions.com').toString('base64'), 'second-topic']);
+        //Notification.unSubscribeTopics(messaging, ['second-topic']);
       }
     });
 
@@ -70,8 +74,8 @@ export default function App() {
       <View style={styles.button}>
         <Button title='Cancel All Reminders' onPress={() => onCancelReminders()}></Button>
       </View>
-      <DynamicLink.Listener />
-      <Notification.Listener />
+      <DynamicLink.Listener dynamicLinks={dynamicLinks} />
+      <Notification.Listener messaging={messaging} />
     </View>
   );
 }

@@ -147,10 +147,5 @@
         }
       ]
     ]
-  },
-  "dependencies": {
-    "@react-native-firebase/app": "^15.7.0",
-    "@react-native-firebase/dynamic-links": "^15.7.0",
-    "@react-native-firebase/messaging": "^15.7.0"
   }
 }
