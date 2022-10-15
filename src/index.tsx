@@ -1,6 +1,6 @@
 import { NativeModules, Platform } from 'react-native';
 import { DynamicLinkListener, dynamicLinkSubject } from './dynamic_links/dynamic_links_listener';
-import { registerRemoteNotifications, subscribeTopics, unSubscribeTopics } from './notifications/notification_helper';
+import { deleteDeviceToken, registerRemoteNotifications, subscribeTopics, unSubscribeTopics } from './notifications/notification_helper';
 import { NotificationListener, notificationSubject } from './notifications/notification_listener';
 
 const LINKING_ERROR =
@@ -47,6 +47,7 @@ export const DynamicLink = {
 export const Notification = {
   observer: notificationSubject,
   register: registerRemoteNotifications,
+  unregister: deleteDeviceToken,
   subscribeTopics: subscribeTopics,
   unSubscribeTopics: unSubscribeTopics,
   Listener: NotificationListener

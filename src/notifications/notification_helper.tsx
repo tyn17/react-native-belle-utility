@@ -30,6 +30,10 @@ export const registerRemoteNotifications = async (messaging: () => any) => {
     }
 }
 
+export const deleteDeviceToken =async (messaging: () => any) => {
+    await messaging().deleteToken();
+}
+
 /**
  * Subscribe Notification Topics
  * @param topics
